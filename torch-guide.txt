@@ -1,0 +1,50 @@
+#Guide Jetpack içeren cihazlar içindir
+ 
+ 
+/// Aşağıdaki linkten cihazdaki mevcut JetPack sürümüne uyumlu olan torch sürümlerinden istenilen sürüm indirilir
+ 
+ 
+ 
+######Torch
+https://developer.download.nvidia.com/compute/redist/jp/
+ 
+/// indirilen konumdaki aşağıdaki adımlar uygulanır
+ 
+ 
+sudo apt-get install python3-pip libopenblas-base libopenmpi-dev libomp-dev
+pip3 install 'Cython<3'
+ 
+///pip3 install numpy <indirilen dosyanın adı>
+///örn
+pip3 install numpy torch-2.2.0a0+81ea7a4.nv24.01-cp310-cp310-linux_aarch64.whl
+ 
+ 
+ 
+ 
+#######Torchvision
+ 
+sudo apt-get install libjpeg-dev zlib1g-dev libpython3-dev libopenblas-dev libavcodec-dev libavformat-dev libswscale-dev
+ 
+///branch versiyonunu aşağıdaki linkten kontrol edebilirsiniz biz torch-2.2.0a0+81ea7a4 için yapıcaz ve 2.2 için vision 0.17 gerekiyor
+///https://github.com/pytorch/vision
+///git clone --branch <version> https://github.com/pytorch/vision torchvision
+git clone --branch 0.17 https://github.com/pytorch/vision torchvision
+cd torchvision
+export BUILD_VERSION=0.17
+python3 setup.py install --user
+cd ../
+pip install 'pillow<7'
+ 
+ 
+//DONE
+ 
+ 
+ 
+###### TEST ETMEK İÇİN
+ 
+python3
+import torch
+torch.__version__
+torch.cuda.is_available()
+import torchvision
+torchvision.__version__
