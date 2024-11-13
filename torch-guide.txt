@@ -30,7 +30,7 @@ sudo apt-get install libjpeg-dev zlib1g-dev libpython3-dev libopenblas-dev libav
 ///git clone --branch <version> https://github.com/pytorch/vision torchvision
 git clone --branch v0.17.0 https://github.com/pytorch/vision torchvision
 cd torchvision
-export BUILD_VERSION=0.17.0
+export BUILD_VERSION=0.17
 python3 setup.py install --user
 cd ../
 pip install 'pillow<7'
