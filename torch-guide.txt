@@ -28,9 +28,9 @@ sudo apt-get install libjpeg-dev zlib1g-dev libpython3-dev libopenblas-dev libav
 ///branch versiyonunu aşağıdaki linkten kontrol edebilirsiniz biz torch-2.2.0a0+81ea7a4 için yapıcaz ve 2.2 için vision 0.17 gerekiyor
 ///https://github.com/pytorch/vision
 ///git clone --branch <version> https://github.com/pytorch/vision torchvision
-git clone --branch 0.17 https://github.com/pytorch/vision torchvision
+git clone --branch v0.17.0 https://github.com/pytorch/vision torchvision
 cd torchvision
-export BUILD_VERSION=0.17
+export BUILD_VERSION=0.17.0
 python3 setup.py install --user
 cd ../
 pip install 'pillow<7'
