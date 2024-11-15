@@ -1,36 +1,39 @@
-#Guide Jetpack içeren cihazlar içindir
+#Guide Jetpack içeren cihazlar içindir(özellikle 6.1 için kurulum yapıcaz)
  
  
 /// Aşağıdaki linkten cihazdaki mevcut JetPack sürümüne uyumlu olan torch sürümlerinden istenilen sürüm indirilir
  
+
+sudo apt-get -y update; 
+sudo apt-get install -y  python3-pip libopenblas-dev;
+
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/arm64/cuda-keyring_1.1-1_all.deb
+sudo dpkg -i cuda-keyring_1.1-1_all.deb
+sudo apt-get update
+sudo apt-get -y install libcusparselt0 libcusparselt-dev
+
+///aşağıdaki linke giderek cihazınız için uygun jetpack versiyonuna ait pytorch linki kopyalanır ve TORCH_INSTALL e yapıştırılır
+export TORCH_INSTALL=https://developer.download.nvidia.com/compute/redist/jp/v61/pytorch/torch-2.5.0a0+872d972e41.nv24.08.17622132-cp310-cp310-linux_aarch64.whl
+
+python3 -m pip install --upgrade pip; python3 -m pip install numpy==’1.26.1’; python3 -m pip install --no-cache $TORCH_INSTALL
+
+python3
+import torch
+torch.cuda.is_available()
  
- 
-######Torch
-https://developer.download.nvidia.com/compute/redist/jp/
- 
-/// indirilen konumdaki aşağıdaki adımlar uygulanır
- 
- 
-sudo apt-get install python3-pip libopenblas-base libopenmpi-dev libomp-dev
-pip3 install 'Cython<3'
- 
-///pip3 install numpy <indirilen dosyanın adı>
-///örn
-pip3 install numpy torch-2.2.0a0+81ea7a4.nv24.01-cp310-cp310-linux_aarch64.whl
- 
- 
- 
- 
+
+
+
 #######Torchvision
  
 sudo apt-get install libjpeg-dev zlib1g-dev libpython3-dev libopenblas-dev libavcodec-dev libavformat-dev libswscale-dev
  
-///branch versiyonunu aşağıdaki linkten kontrol edebilirsiniz biz torch-2.2.0a0+81ea7a4 için yapıcaz ve 2.2 için vision 0.17 gerekiyor
+///branch versiyonunu aşağıdaki linkten kontrol edebilirsiniz biz torch-2.5.0a0+872d972e41 için yapıcaz ve 2.5 için 0.20.1 gerekiyor
 ///https://github.com/pytorch/vision
 ///git clone --branch <version> https://github.com/pytorch/vision torchvision
-git clone --branch v0.17.0 https://github.com/pytorch/vision torchvision
+git clone --branch v0.20.1 https://github.com/pytorch/vision torchvision
 cd torchvision
-export BUILD_VERSION=0.17
+export BUILD_VERSION=0.20.1
 python3 setup.py install --user
 cd ../
 pip install 'pillow<7'
